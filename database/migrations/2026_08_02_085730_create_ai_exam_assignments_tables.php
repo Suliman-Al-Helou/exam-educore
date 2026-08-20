@@ -24,8 +24,8 @@ return new class extends Migration
                  * The assignment is available to students
                  * only between these two timestamps.
                  */
-                $table->timestamp('starts_at');
-                $table->timestamp('ends_at');
+           $table->dateTime('starts_at');
+           $table->dateTime('ends_at');
 
                 $table
                     ->unsignedSmallInteger('attempt_limit')
