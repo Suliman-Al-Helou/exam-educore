@@ -14,7 +14,7 @@ return new class extends Migration
             $table->ulid('id')->primary();
 
             $table->foreignUlid('book_id')
-                ->constrained('books')
+                ->constrained('ai_curriculum_documents')
                 ->restrictOnDelete();
 
             $table->string('external_teacher_id')->index();
