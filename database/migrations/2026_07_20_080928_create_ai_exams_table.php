@@ -9,6 +9,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('ai_exams', function (Blueprint $table): void {
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_unicode_ci';
             $table->ulid('id')->primary();
 
             $table->foreignUlid('curriculum_document_id')
