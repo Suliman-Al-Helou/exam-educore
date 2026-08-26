@@ -13,7 +13,7 @@ Route::prefix('v1')
                     'status' => 'ok',
                 ],
             ]);
-            
+
         });
 
         Route::get(
@@ -46,49 +46,51 @@ Route::prefix('v1')
             [AiExamController::class, 'publish']
         );
         Route::patch(
-    '/ai-exams/{exam}/questions/{question}',
-    [AiExamController::class, 'updateQuestion']
-);
-Route::delete(
-    '/ai-exams/{exam}/questions/{question}',
-    [AiExamController::class, 'deleteQuestion']
-);
-Route::post(
-    '/ai-exams/{exam}/questions',
-    [AiExamController::class, 'addQuestion']
-);
-Route::patch(
-    '/ai-exams/{exam}',
-    [AiExamController::class, 'update']
-);
-Route::post(
-    '/ai-exams/{exam}/assignments',
-    [AiExamController::class, 'assign']
-);
-Route::get(
-    '/ai-exam-assignments/{assignment}/student-exam',
-    [AiExamController::class, 'showStudentExam']
-);
-Route::post(
-    '/ai-exam-assignments/{assignment}/attempts',
-    [AiExamController::class, 'startAttempt']
-);
-Route::put(
-    '/ai-exam-attempts/{attempt}/answers/{question}',
-    [AiExamController::class, 'saveAttemptAnswer']
-);
-Route::post(
-    '/ai-exam-attempts/{attempt}/submit',
-    [AiExamController::class, 'submitAttempt']
-);
-Route::get(
-    '/ai-exam-attempts/{attempt}/result',
-    [AiExamController::class, 'showAttemptResult']
-);
-Route::get(
-    '/ai-exam-assignments/{assignment}/teacher-report',
-    [AiExamController::class, 'showAssignmentReport']
-);
+            '/ai-exams/{exam}/questions/{question}',
+            [AiExamController::class, 'updateQuestion']
+        );
+        Route::delete(
+            '/ai-exams/{exam}/questions/{question}',
+            [AiExamController::class, 'deleteQuestion']
+        );
+        Route::post(
+            '/ai-exams/{exam}/questions',
+            [AiExamController::class, 'addQuestion']
+        );
+        Route::patch(
+            '/ai-exams/{exam}',
+            [AiExamController::class, 'update']
+        );
+        Route::post(
+            '/ai-exams/{exam}/assignments',
+            [AiExamController::class, 'assign']
+        );
+        Route::get(
+            '/ai-exam-assignments',
+            [AiExamController::class, 'listStudentAssignments']
+        );
+        Route::get(
+            '/ai-exam-assignments/{assignment}/student-exam',
+            [AiExamController::class, 'showStudentExam']
+        );
+        Route::post(
+            '/ai-exam-assignments/{assignment}/attempts',
+            [AiExamController::class, 'startAttempt']
+        );
+        Route::put(
+            '/ai-exam-attempts/{attempt}/answers/{question}',
+            [AiExamController::class, 'saveAttemptAnswer']
+        );
+        Route::post(
+            '/ai-exam-attempts/{attempt}/submit',
+            [AiExamController::class, 'submitAttempt']
+        );
+        Route::get(
+            '/ai-exam-attempts/{attempt}/result',
+            [AiExamController::class, 'showAttemptResult']
+        );
+        Route::get(
+            '/ai-exam-assignments/{assignment}/teacher-report',
+            [AiExamController::class, 'showAssignmentReport']
+        );
     });
-
-   
