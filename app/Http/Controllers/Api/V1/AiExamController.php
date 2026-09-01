@@ -67,6 +67,52 @@ class AiExamController extends Controller
     }
 
     /**
+     * List all exams belonging to a teacher.
+     */
+    public function listTeacherExams(
+        Request $request
+    ): AnonymousResourceCollection {
+        $request->validate([
+            'external_teacher_id' => ['required', 'string', 'max:191'],
+            'per_page' => ['sometimes', 'integer', 'min:1', 'max:100'],
+        ]);
+
+        $exams = AiExam::query()
+            ->where(
+                'external_teacher_id',
+                $request->input('external_teacher_id')
+            )
+            ->latest()
+            ->paginate($request->input('per_page', 15));
+
+        return AiExamResource::collection($exams);
+    }
+
+    /**
+     * Soft-delete an exam (teacher must own it).
+     */
+    public function destroy(
+        Request $request,
+        AiExam $exam
+    ): JsonResponse {
+        $request->validate([
+            'external_teacher_id' => ['required', 'string', 'max:191'],
+        ]);
+
+        abort_unless(
+            $exam->external_teacher_id === $request->input('external_teacher_id'),
+            403,
+            'لا يمكنك حذف اختبار لا يخصك.'
+        );
+
+        $exam->delete();
+
+        return response()->json([
+            'message' => 'تم حذف الاختبار بنجاح.',
+        ]);
+    }
+
+    /**
      * Create a pending AI exam.
      */
     public function store(
