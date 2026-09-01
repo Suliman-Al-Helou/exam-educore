@@ -36,13 +36,13 @@ return new class extends Migration
                     ->string('status', 32)
                     ->default('in_progress');
 
-                $table->timestamp('started_at');
+                $table->timestamp('started_at')->useCurrent();
 
                 /*
                  * The attempt may expire before the
                  * assignment ends because of exam duration.
                  */
-                $table->timestamp('expires_at');
+                $table->timestamp('expires_at')->nullable();
 
                 $table
                     ->timestamp('submitted_at')

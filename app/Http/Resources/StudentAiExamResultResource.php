@@ -151,6 +151,17 @@ final class StudentAiExamResultResource extends JsonResource
                                 'explanation' =>
                                     $question
                                         ->explanation,
+
+                                'options' => $question->options
+                                    ->sortBy('position')
+                                    ->values()
+                                    ->map(
+                                        fn ($option): array => [
+                                            'id' => $option->id,
+                                            'option_text' => $option->option_text,
+                                            'position' => $option->position,
+                                        ]
+                                    ),
                             ];
                         }
                     )

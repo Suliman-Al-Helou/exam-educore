@@ -61,6 +61,10 @@ Route::prefix('v1')
             '/ai-exams/{exam}',
             [AiExamController::class, 'update']
         );
+        Route::delete(
+            '/ai-exams/{exam}',
+            [AiExamController::class, 'destroy']
+        );
         Route::post(
             '/ai-exams/{exam}/assignments',
             [AiExamController::class, 'assign']
@@ -68,6 +72,10 @@ Route::prefix('v1')
         Route::get(
             '/ai-exam-assignments',
             [AiExamController::class, 'listStudentAssignments']
+        );
+        Route::get(
+            '/ai-exams',
+            [AiExamController::class, 'listTeacherExams']
         );
         Route::get(
             '/ai-exam-assignments/{assignment}/student-exam',
